@@ -1,0 +1,29 @@
+html, body, :global(#root) {
+  height: 100%;
+  font-family: PingFang-SC-Regular;
+}
+
+:global(.am-picker-popup-header) {
+  background-color: #f0f0f0;
+  :global(.am-picker-popup-item) {
+    font-size: 28px;
+    &:global(.am-picker-popup-header-left) {
+      color: #333333;
+    }
+  }
+}
+
+:global(.am-tabs-default-bar-top) {
+  border: 1px solid #ddd;
+}
+
+:global(.am-modal-title), :global(.am-modal-button) {
+  font-size: 32px !important;
+}
+
+:global(textarea) {
+  &::placeholder {
+    font-size: 28px;
+    color: #999999;
+  }
+}
