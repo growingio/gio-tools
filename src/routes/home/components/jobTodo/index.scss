@@ -1,0 +1,43 @@
+.jobTodo {
+  :global {
+    .form {
+      padding: 30px;
+
+      .otherProps {
+        .ant-form-item-children {
+          .key {
+            width: 80px;
+            margin-right: 8px;
+          }
+          .value {
+            width: 150px;
+            margin-right: 8px;
+          }
+          .plus, .minus {
+            border: 1px solid #CCC;
+            &:hover {
+              cursor: pointer;
+              border: 1px solid #666;
+            }
+          }
+        }
+      }
+      .priority {
+        .ant-input-number {
+          width: 180px;
+        }
+      }
+      .posRange {
+        .ant-calendar-picker {
+          width: 180px;
+        }
+      }
+      .genButton {
+        float: right;
+      }
+    }
+    .gen {
+      padding: 30px;
+    }
+  }
+}

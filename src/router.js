@@ -3,6 +3,7 @@ import { routerRedux, Route, Switch } from 'dva/router';
 import PropTypes from 'prop-types';
 
 import HomePage from './routes/home';
+import JobTodo from './routes/home/components/jobTodo';
 
 const { ConnectedRouter } = routerRedux;
 
@@ -11,11 +12,7 @@ function RouterConfig({ history }) {
     <ConnectedRouter history={history}>
       <Switch>
         <Route path="/" exact component={HomePage} />
-        {/* <Route path="/me" exact component={MePage} />
-        <Route path="/account" exact component={AccountPage} />
-        <Route path="/address" exact component={AddressPage} />
-        <Route path="/addresseidt" exact component={AddressEditPage} />
-        */}
+        <Route path="/tools/job_todo" exact component={JobTodo} />
       </Switch>
     </ConnectedRouter>
   );

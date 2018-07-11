@@ -1,0 +1,18 @@
+.home {
+  :global {
+    .ant-layout-header {
+      background: #FA6F40;
+      color: #FFF;
+    }
+    .content {
+      padding: 30px;
+
+      .ant-card-head-title {
+        font-size: 14px;
+      }
+      .ant-card-body {
+        font-size: 10px;
+      }
+    }
+  }
+}

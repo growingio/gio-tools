@@ -1,5 +1,5 @@
 import path from 'path';
-const pxtorem = require('postcss-pxtorem');
+// const pxtorem = require('postcss-pxtorem');
 
 export default {
   publicPath: "/",
@@ -14,11 +14,22 @@ export default {
     cmt: path.resolve(__dirname, 'src/components/'), // 公共组件
     icons: path.resolve(__dirname, 'src/assets/icons/'), // icon 图标
   },
-  extraPostCSSPlugins: [
-    pxtorem({
-      rootValue: 75,
-      propWhiteList: [],
-    }),
+  html: {
+    template: './src/index.ejs',
+  },
+  publicPath: '/',
+  // extraPostCSSPlugins: [
+  //   pxtorem({
+  //     rootValue: 75,
+  //     propWhiteList: [],
+  //   }),
+  // ],
+  extraBabelPlugins: [
+    ['import', {
+      libraryName: 'antd',
+      libraryDirectory: 'es',
+      style: true
+    }]
   ],
   env: {
     development: {
@@ -26,5 +37,6 @@ export default {
         'dva-hmr'
       ]
     }
-  }
+  },
+
 };
