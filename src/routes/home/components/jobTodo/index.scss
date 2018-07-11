@@ -38,6 +38,14 @@
     }
     .gen {
       padding: 30px;
+      font-size: 12px;
+      .react-codemirror2 {
+        border: 1px solid #CCC;
+        padding: 10px;
+      }
+      .CodeMirror {
+        height: 600px;
+      }
     }
   }
 }

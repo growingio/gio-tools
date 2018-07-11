@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Icon, Input, Button, AutoComplete, DatePicker, InputNumber } from 'antd';
 import KV from 'cmt/kv';
+import moment from 'moment';
 
 const FormItem = Form.Item;
 
@@ -23,7 +24,6 @@ class JobTodoForm extends Component {
 
   addKeyValue() {
     this.state.keyValues.push({});
-    console.log(this.state.keyValues);
     this.setState({ keyValues: this.state.keyValues });
   }
 
@@ -72,6 +72,7 @@ class JobTodoForm extends Component {
         <FormItem {...formItemLayout} label="根据startPos和endPos生成范围" className="posRange">
           {getFieldDecorator('posRange', {
             rules: [],
+            initialValue: moment(),
           })(
             <DatePicker placeholder="请输入时间生成范围" />
           )}

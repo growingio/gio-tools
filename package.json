@@ -8,9 +8,11 @@
   },
   "dependencies": {
     "antd": "^3.6.6",
+    "codemirror": "^5.39.0",
     "dva": "^2.1.0",
     "rc-form": "^2.1.7",
     "react": "^16.2.0",
+    "react-codemirror2": "^5.1.0",
     "react-dom": "^16.2.0",
     "react-lazyload": "^2.3.0"
   },
