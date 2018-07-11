@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Icon, Input, Button, AutoComplete, DatePicker, InputNumber } from 'antd';
+import KV from 'cmt/kv';
 
 const FormItem = Form.Item;
 
@@ -7,33 +8,22 @@ class JobTodoForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      keyValues: [0],
+      keyValues: [{}],
     };
   }
 
-  renderKeyValue(index) {
-    const { getFieldDecorator } = this.props.form;
-
+  renderKeyValue(index, { key, value }) {
     return [
-      getFieldDecorator(`key${index}`, {
-        rules: [],
-      })(
-        <Input className="key" placeholder="key" key={`key${index}`} />
-      ),
-      getFieldDecorator(`value${index}`, {
-        rules: [],
-      })(
-        <Input className="value" placeholder="value" key={`value${index}`} />
-      ),
+      <KV key={`KV${index}`} id={index} k={key} v={value} onChange={this.changeHandler.bind(this)} {...this.props} />,
       index === this.state.keyValues.length - 1 ?
         <Icon key={`plus${index}`} className="plus" type="plus" onClick={() => this.addKeyValue(index)} /> :
         <Icon key={`minus${index}`} className="minus" type="minus" onClick={() => this.minusKeyValue(index)} />,
     ];
   }
 
-  addKeyValue(index) {
-    const last = this.state.keyValues[index] || 0;
-    this.state.keyValues.push(last + 1);
+  addKeyValue() {
+    this.state.keyValues.push({});
+    console.log(this.state.keyValues);
     this.setState({ keyValues: this.state.keyValues });
   }
 
@@ -41,7 +31,14 @@ class JobTodoForm extends Component {
     if (this.state.keyValues.length === 1) {
       return;
     }
-    this.state.keyValues = this.state.keyValues.filter((v, i) => i !== index);
+    this.state.keyValues = this.state.keyValues.filter((kv, i) => i !== index);
+    this.setState({ keyValues: this.state.keyValues });
+  }
+
+  changeHandler(index, key, value) {
+    const kv = this.state.keyValues[index];
+    kv.key = key;
+    kv.value = value;
     this.setState({ keyValues: this.state.keyValues });
   }
 
@@ -80,7 +77,7 @@ class JobTodoForm extends Component {
           )}
         </FormItem>
         <FormItem {...keyValueItemLayout} label="其他配置参数" className="otherProps">
-          {this.state.keyValues.map((v, i) => this.renderKeyValue(i))}
+          {this.state.keyValues.map((kv, i) => this.renderKeyValue(i, kv))}
         </FormItem>
         <FormItem {...formItemLayout} label="权重" className="priority">
           {getFieldDecorator('priority', {
