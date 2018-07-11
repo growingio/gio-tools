@@ -27,6 +27,11 @@
           width: 180px;
         }
       }
+      .status {
+        .ant-form-item-control {
+          width: 180px;
+        }
+      }
       .posRange {
         .ant-calendar-picker {
           width: 180px;
@@ -34,6 +39,9 @@
       }
       .genButton {
         float: right;
+        .sqlButton {
+          margin-right: 10px;
+        }
       }
     }
     .gen {
@@ -44,7 +52,7 @@
         padding: 10px;
       }
       .CodeMirror {
-        height: 600px;
+        height: 560px;
       }
     }
   }

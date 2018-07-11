@@ -18,7 +18,9 @@ class Home extends Component {
 
     return (
       <div className={Styles.home}>
-        <Header className="header">GrowingIO Tools</Header>
+        <Header className="header">
+          <a onClick={() => { dispatch(routerRedux.push({ pathname: '/' })); }}>GrowingIO Tools</a>
+        </Header>
         <Content className="content">
           <Card
             title="JOB_TODO SQL GEN"

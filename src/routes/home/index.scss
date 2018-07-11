@@ -1,5 +1,11 @@
 .home {
   :global {
+    .header {
+      a {
+        text-decoration: none;
+        color: #FFF;
+      }
+    }
     .ant-layout-header {
       background: #FA6F40;
       color: #FFF;

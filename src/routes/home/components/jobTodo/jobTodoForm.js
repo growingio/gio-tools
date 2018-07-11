@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Icon, Input, Button, AutoComplete, DatePicker, InputNumber } from 'antd';
 import KV from 'cmt/kv';
 import moment from 'moment';
+import { dataSource } from './datasource';
 
 const FormItem = Form.Item;
 
@@ -46,19 +47,13 @@ class JobTodoForm extends Component {
     const { getFieldDecorator } = this.props.form;
 
     const formItemLayout = {
-      labelCol: { xs: { span: 24 }, sm: { span: 12 } },
+      labelCol: { xs: { span: 12 }, sm: { span: 10 } },
       wrapperCol: { xs: { span: 24 }, sm: { span: 12 } },
     };
-    const keyValueItemLayout = {
-      labelCol: { xs: { span: 24 }, sm: { span: 12 } },
-      wrapperCol: { xs: { span: 24 }, sm: { span: 12 } },
-    };
-
-    const dataSource = ['Burns Bay Road', 'Downing Street', 'Wall Street'];
 
     return (
       <Form onSubmit={this.props.handleSubmit}>
-        <FormItem {...formItemLayout} label="class全名">
+        <FormItem {...formItemLayout} label="class全名" className="class">
           {getFieldDecorator('class', {
             rules: [{ required: true, message: 'Please input your class!' }],
           })(
@@ -77,7 +72,7 @@ class JobTodoForm extends Component {
             <DatePicker placeholder="请输入时间生成范围" />
           )}
         </FormItem>
-        <FormItem {...keyValueItemLayout} label="其他配置参数" className="otherProps">
+        <FormItem {...formItemLayout} label="其他配置参数" className="otherProps">
           {this.state.keyValues.map((kv, i) => this.renderKeyValue(i, kv))}
         </FormItem>
         <FormItem {...formItemLayout} label="权重" className="priority">
@@ -97,8 +92,11 @@ class JobTodoForm extends Component {
           )}
         </FormItem>
         <FormItem className="genButton">
-          <Button type="primary" htmlType="submit" className="login-form-button">
+          <Button type="primary" htmlType="submit" className="login-form-button sqlButton">
             生成SQL
+          </Button>
+          <Button type="primary" className="login-form-button encode" onClick={this.props.handleClick}>
+            参数Encode
           </Button>
         </FormItem>
       </Form>
