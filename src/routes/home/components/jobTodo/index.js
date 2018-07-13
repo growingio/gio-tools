@@ -26,11 +26,11 @@ class JobTodo extends Component {
     this.formObj.getForm().validateFields((err, values) => {
       if (!err) {
         // 获取值
-        const { class: clazz, posRange, status, priority } = values;
+        const { class: clazz, posRange, status, priority, ifRange } = values;
         // 获取 kv
         const kvs = this.getKV(values);
         // 生成sql
-        const sql = this.generateSql(clazz, posRange, status, priority, kvs, encode);
+        const sql = this.generateSql(clazz, posRange, status, priority, kvs, ifRange, encode);
         this.setState({ sql });
       }
     });
@@ -56,20 +56,31 @@ class JobTodo extends Component {
   };
 
   /** 生成 insert 的 sql */
-  generateSql = (clazz, posRange, status, priority, kvs = [], encode) => {
+  generateSql = (clazz, posRange, status, priority, kvs = [], ifRange, encode) => {
     // kvs生成string
     const kvStrs = kvs.length === 0 ? '' : `,${kvs.map(v => `"${v.key}":"${v.value}"`).join(',')}`;
     // 根据时间生成
     const strs = [];
     let now = posRange.startOf('day').utc();
-    for (let i = 0; i < 24; i++) {
+    console.log(ifRange);
+    if (ifRange === true) {
+      for (let i = 0; i < 24; i++) {
+        const startPos = now.format('YYYYMMDDHHmm');
+        now = now.add(1, 'h');
+        const stopPos = now.format('YYYYMMDDHHmm');
+        const confStr = `{"startPos":"${startPos}","stopPos":"${stopPos}"${kvStrs}}`;
+        const str = `('${dataSourceObj[clazz]}', '${encode ? encodeURIComponent(confStr) : confStr}', ${priority}, '${status}', now())`;
+        strs.push(str);
+      }
+    } else { // 否则生成天范围
       const startPos = now.format('YYYYMMDDHHmm');
-      now = now.add(1, 'h');
+      now = now.add(1, 'd');
       const stopPos = now.format('YYYYMMDDHHmm');
       const confStr = `{"startPos":"${startPos}","stopPos":"${stopPos}"${kvStrs}}`;
       const str = `('${dataSourceObj[clazz]}', '${encode ? encodeURIComponent(confStr) : confStr}', ${priority}, '${status}', now())`;
       strs.push(str);
     }
+
     return `INSERT INTO job_todo (clz, param, priority, status, created_at) VALUES \n${strs.join(',\n')};`;
   }
 

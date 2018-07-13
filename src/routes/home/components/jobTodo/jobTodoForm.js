@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Icon, Input, Button, AutoComplete, DatePicker, InputNumber } from 'antd';
+import { Form, Icon, Input, Button, AutoComplete, DatePicker, InputNumber, Checkbox } from 'antd';
 import KV from 'cmt/kv';
 import moment from 'moment';
 import { dataSource } from './datasource';
@@ -51,6 +51,7 @@ class JobTodoForm extends Component {
       wrapperCol: { xs: { span: 24 }, sm: { span: 12 } },
     };
 
+
     return (
       <Form onSubmit={this.props.handleSubmit}>
         <FormItem {...formItemLayout} label="class全名" className="class">
@@ -70,6 +71,12 @@ class JobTodoForm extends Component {
             initialValue: moment(),
           })(
             <DatePicker placeholder="请输入时间生成范围" />
+          )}
+          {getFieldDecorator('ifRange', {
+            valuePropName: 'checked',
+            initialValue: true,
+          })(
+            <Checkbox className="ifRange">生成时间范围</Checkbox>
           )}
         </FormItem>
         <FormItem {...formItemLayout} label="其他配置参数" className="otherProps">

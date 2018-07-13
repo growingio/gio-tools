@@ -11,7 +11,7 @@
           }
           .value {
             width: 150px;
-            margin-right: 8px;
+            margin-right: 8px
           }
           .plus, .minus {
             border: 1px solid #CCC;
@@ -34,7 +34,10 @@
       }
       .posRange {
         .ant-calendar-picker {
-          width: 180px;
+          width: 140px;
+        }
+        .ifRange {
+          margin-left: 10px;
         }
       }
       .genButton {
