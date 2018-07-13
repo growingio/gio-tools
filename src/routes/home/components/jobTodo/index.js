@@ -90,7 +90,7 @@ class JobTodo extends Component {
     return (
       <div className={Styles.jobTodo}>
         <Header className="header">
-          <a onClick={() => { dispatch(routerRedux.push({ pathname: '/' })); }}>GrowingIO Tools</a>
+          <a onClick={() => { dispatch(routerRedux.push({ pathname: '/' })); }}>GrowingIO Tools &gt; JOB_TODO SQL GEN</a>
         </Header>
         <Row>
           <Col className="form" span={10}>
