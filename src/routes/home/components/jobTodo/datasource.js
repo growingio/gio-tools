@@ -99,6 +99,7 @@ export const dataSourceObj = {
   PatternServerJob: 'io.growing.offline.business.patternserver.PatternServerJob',
   PplDimensionStatDayJob: 'io.growing.offline.business.statistic.daily.dimension.PplDimensionStatDayJob',
   PplDimensionStatJob: 'io.growing.offline.business.statistic.hourly.dimension.PplDimensionStatJob',
+  S3DownHourDataJob: 'io.growing.offline.business.downdata.repair.S3DownHourDataJob',
   SequenceIdJob: 'io.growing.offline.business.giometric.SequenceIdJob',
   SequentialSparkJob: 'io.growing.offline.server.SequentialSparkJob',
   TActivityWebNUVHourJob: 'io.growing.offline.business.statistic.hourly.metric.TActivityWebNUVHourJob',
