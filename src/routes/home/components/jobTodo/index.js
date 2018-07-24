@@ -61,8 +61,7 @@ class JobTodo extends Component {
     const kvStrs = kvs.length === 0 ? '' : `,${kvs.map(v => `"${v.key}":"${v.value}"`).join(',')}`;
     // 根据时间生成
     const strs = [];
-    let now = posRange.startOf('day').utc();
-    console.log(ifRange);
+    let now = posRange.startOf('day').clone().utc();
     if (ifRange === true) {
       for (let i = 0; i < 24; i++) {
         const startPos = now.format('YYYYMMDDHHmm');
