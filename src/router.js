@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import HomePage from './routes/home';
 import JobTodo from './routes/home/components/jobTodo';
+import ApiAuth from './routes/home/components/apiAuth';
 
 const { ConnectedRouter } = routerRedux;
 
@@ -13,6 +14,7 @@ function RouterConfig({ history }) {
       <Switch>
         <Route path="/" exact component={HomePage} />
         <Route path="/tools/job_todo" exact component={JobTodo} />
+        <Route path="/tools/api_auth" exact component={ApiAuth} />
       </Switch>
     </ConnectedRouter>
   );
