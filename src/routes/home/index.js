@@ -25,6 +25,17 @@ class Home extends Component {
           <Row gutter={16}>
             <Col span={6}>
               <Card
+                title="QS Monitor"
+                style={{ width: 300 }}
+                extra={<Icon type="link" />}
+                hoverable="true"
+                onClick={() => { dispatch(routerRedux.push({ pathname: '/tools/run_jobs' })); }}
+              >
+                模拟 GrowingIO 的 API 认证接口
+              </Card>
+            </Col>
+            <Col span={6}>
+              <Card
                 title="JOB_TODO SQL GEN"
                 style={{ width: 300 }}
                 extra={<Icon type="file-text" />}
