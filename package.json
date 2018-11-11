@@ -3,8 +3,9 @@
   "scripts": {
     "start": "roadhog server",
     "build": "roadhog build",
-    "lint": "eslint --ext .js src test",
-    "precommit": "npm run lint"
+    "server": "ts-node -r tsconfig-paths/register server/main.ts",
+    "server:dev": "nodemon",
+    "server:prod": "tsc && node dist/main.js"
   },
   "dependencies": {
     "antd": "^3.6.6",
@@ -14,7 +15,15 @@
     "react": "^16.2.0",
     "react-codemirror2": "^5.1.0",
     "react-dom": "^16.2.0",
-    "react-lazyload": "^2.3.0"
+    "react-lazyload": "^2.3.0",
+    "@nestjs/common": "^5.1.0",
+    "@nestjs/core": "^5.1.0",
+    "@nestjs/typeorm": "^5.2.2",
+    "mysql": "^2.16.0",
+    "reflect-metadata": "^0.1.12",
+    "rxjs": "^6.2.2",
+    "typeorm": "^0.2.8",
+    "typescript": "^3.0.1"
   },
   "devDependencies": {
     "babel-plugin-dva-hmr": "^0.3.2",
@@ -32,6 +41,22 @@
     "postcss-pxtorem": "^4.0.1",
     "redbox-react": "^1.4.3",
     "roadhog": "^2.0.0",
-    "sass-loader": "^4.0.2"
+    "sass-loader": "^4.0.2",
+    "@nestjs/testing": "^5.1.0",
+    "@types/express": "^4.16.0",
+    "@types/jest": "^23.3.1",
+    "@types/node": "^10.7.1",
+    "@types/supertest": "^2.0.5",
+    "jest": "^23.5.0",
+    "nodemon": "^1.18.3",
+    "prettier": "^1.14.2",
+    "rimraf": "^2.6.2",
+    "supertest": "^3.1.0",
+    "ts-jest": "^23.1.3",
+    "ts-loader": "^4.4.2",
+    "ts-node": "^7.0.1",
+    "tsconfig-paths": "^3.5.0",
+    "tslint": "5.11.0"
+
   }
 }
