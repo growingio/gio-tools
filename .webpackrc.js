@@ -43,5 +43,5 @@ export default {
       "target": "http://localhost:3030/",
       "changeOrigin": true,
     }
-  }
+  },
 };

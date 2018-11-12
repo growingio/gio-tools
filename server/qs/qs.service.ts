@@ -19,16 +19,15 @@ export class QSService {
           .then(it => {
             return { server: s.name, values: it };
           }),
-      ),
-    )
-    .then(data => {
-      const jobs: Array<Job> = [];
-      data.forEach(it => {
-        it.values.forEach(value => {
-          jobs.push(new Job(it.server, value.ai, value.jobId, value.requestId, value.runningTime));
+      ))
+      .then(data => {
+        const jobs: Array<Job> = [];
+        data.forEach(it => {
+          it.values.forEach(value => {
+            jobs.push(new Job(it.server, value.ai, value.jobId, value.requestId, value.runningTime));
+          });
         });
+        return jobs;
       });
-      return jobs;
-    });
   }
 }

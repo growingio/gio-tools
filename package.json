@@ -5,7 +5,7 @@
     "build": "roadhog build",
     "server": "ts-node -r tsconfig-paths/register server/main.ts",
     "server:dev": "nodemon",
-    "server:prod": "tsc && node dist/main.js"
+    "server:prod": "tsc && node dist_server/main.js"
   },
   "dependencies": {
     "antd": "^3.6.6",

@@ -27,11 +27,11 @@ class Home extends Component {
               <Card
                 title="QS Monitor"
                 style={{ width: 300 }}
-                extra={<Icon type="link" />}
+                extra={<Icon type="fund" />}
                 hoverable="true"
                 onClick={() => { dispatch(routerRedux.push({ pathname: '/tools/run_jobs' })); }}
               >
-                模拟 GrowingIO 的 API 认证接口
+                Query Service 任务监控
               </Card>
             </Col>
             <Col span={6}>
