@@ -29,11 +29,11 @@ const columns = [{
   title: '运行时间',
   dataIndex: 'runningTime',
   key: 'runningTime',
-}, /* {
+}, {
   title: '任务ID',
   dataIndex: 'jobId',
   key: 'jobId',
-} */];
+}];
 
 @connect(({ runJobs }) => ({
   jobs: runJobs.jobs,
