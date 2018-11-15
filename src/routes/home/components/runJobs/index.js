@@ -15,7 +15,7 @@ const columns = [{
       <a
         target="_blank"
         rel="noopener noreferrer"
-        href={`http://kibana.infra.growingio.com/app/kibana#/discover?_g=(refreshInterval:(pause:!t,value:0),time:(from:now-15m,mode:quick,to:now))&_a=(columns:!(_source),index:a4a557c0-ceb2-11e8-9d51-91ff741de901,interval:auto,query:(language:lucene,query:'${value}'),sort:!('@timestamp',desc))`}
+        href={`http://kibana.infra.growingio.com/app/kibana#/discover?_g=(refreshInterval:(pause:!t,value:0),time:(from:now-15m,mode:quick,to:now))&_a=(columns:!(_source),index:a4a557c0-ceb2-11e8-9d51-91ff741de901,interval:auto,query:(language:lucene,query:"${value}"),sort:!('@timestamp',desc))`}
       >
         { value }
       </a>
