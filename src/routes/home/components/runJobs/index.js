@@ -44,11 +44,11 @@ class RunJobs extends Component {
     this.state = {
     };
     // 定时刷新页面
-    setInterval(() => {
-      this.props.dispatch({
-        type: 'runJobs/fetchList',
-      });
-    }, 4000);
+    // setInterval(() => {
+    //   this.props.dispatch({
+    //     type: 'runJobs/fetchList',
+    //   });
+    // }, 4000);
   }
 
   componentDidMount() {
