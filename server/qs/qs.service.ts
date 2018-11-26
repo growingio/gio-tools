@@ -16,9 +16,7 @@ export class QSService {
       this.server.map(s =>
         axios.get(`http://${s.address}/stat/runningJob`)
           .then(res => res.data.value || [])
-          .then(it => {
-            return { server: s.name, values: it };
-          }),
+          .then(it => ({server: s.name, values: it })),
       ))
       .then(data => {
         const jobs: Array<Job> = [];
