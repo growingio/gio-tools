@@ -1,0 +1,11 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 7532,
+  "username": "apps",
+  "password": "v,4)5Y|5G1PzF+fL",
+  "database": "growing",
+  "logging": false,
+  "synchronize": false,
+  "entities": ["server/**/*.entity{.ts,.js}"]
+}
