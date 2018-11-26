@@ -26,6 +26,7 @@
     "typeorm": "^0.2.8",
     "typescript": "^3.0.1",
     "axios": "^0.18.0",
+    "axios-https-proxy-fix": "^0.17.1",
     "nestjs-config": "^1.2.7"
   },
   "devDependencies": {
