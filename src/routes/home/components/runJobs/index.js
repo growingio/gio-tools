@@ -5,6 +5,7 @@ import { Layout, Table } from 'antd';
 import Styles from './index.scss';
 
 const { Header, Content } = Layout;
+const emptyImg = require('icons/empty.png');
 
 const columns = [{
   title: '请求ID',
@@ -52,6 +53,10 @@ class RunJobs extends Component {
   }
 
   componentDidMount() {
+    this.fetchJobList();
+  }
+
+  fetchJobList() {
     const { dispatch } = this.props;
     dispatch({
       type: 'runJobs/fetchList',
@@ -74,6 +79,13 @@ class RunJobs extends Component {
         </Header>
         <Content className="content">
           {
+            jobs.length === 0 ?
+            (
+              <div className="empty">
+                <img src={emptyImg} alt="" with="800" height="300" />
+                <span>空空如也, <a href="javascript:;" onClick={() => this.fetchJobList()}>点我刷新</a></span>
+              </div>
+            ) :
             Object.keys(jobsPartition).map((key, i) => (
               <div key={`${key}_${i}`}>
                 <span>{ key }</span>

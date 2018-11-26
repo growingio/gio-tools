@@ -14,6 +14,7 @@ const TYPES = {
   dynamiced: require('icons/dynamiced.png'),
   me: require('icons/me.png'),
   med: require('icons/med.png'),
+  empty: require('icons/empty.png'),
   // 其他图标
   like: require('icons/like.png'),
   liked: require('icons/liked.png'),

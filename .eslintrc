@@ -61,6 +61,7 @@
     "react/jsx-no-bind": 0,
     "no-mixed-operators": 0,
     "global-require": 0,
-    "no-plusplus": "off"
+    "no-plusplus": "off",
+    "no-script-url": "off"
   }
 }
