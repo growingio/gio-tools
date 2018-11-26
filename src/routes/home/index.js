@@ -22,7 +22,7 @@ class Home extends Component {
           <a onClick={() => { dispatch(routerRedux.push({ pathname: '/' })); }}>GrowingIO Tools</a>
         </Header>
         <Content className="content">
-          <Row gutter={16}>
+          <Row className="row" gutter={16}>
             <Col span={6}>
               <Card
                 title="QS Monitor"
@@ -54,6 +54,19 @@ class Home extends Component {
                 onClick={() => { dispatch(routerRedux.push({ pathname: '/tools/api_auth' })); }}
               >
                 模拟 GrowingIO 的 API 认证接口
+              </Card>
+            </Col>
+          </Row>
+          <Row className="row" gutter={16}>
+            <Col span={6}>
+              <Card
+                title="原始数据导出（v2）"
+                style={{ width: 300 }}
+                extra={<Icon type="cloud-download" />}
+                hoverable="true"
+                onClick={() => { dispatch(routerRedux.push({ pathname: '/tools/export_v2' })); }}
+              >
+                原始数据导出 v2 接口
               </Card>
             </Col>
           </Row>

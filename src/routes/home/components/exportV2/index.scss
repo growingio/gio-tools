@@ -1,0 +1,23 @@
+.exportV2 {
+  :global {
+    .content {
+      margin: 20px 0 0 100px;
+      a {
+        text-decoration: none;
+      }
+      .ai {
+        width: 300px;
+      }
+      .export-type {
+        width: 160px;
+      }
+      .date {
+        width: 240px;
+      }
+      .links {
+        margin: 30px 0;
+        width: 1000px;
+      }
+    }
+  }
+}

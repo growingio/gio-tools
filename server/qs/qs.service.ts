@@ -19,6 +19,9 @@ export class QSService {
     this.server = config.get('config.qs.server');
   }
 
+  /**
+   * 获取 query service 正在运行查询的信息
+   */
   async getStatRunningJob(): Promise<Job[]> {
     return await Promise.all(
       this.server.map(s =>
@@ -37,8 +40,14 @@ export class QSService {
       });
   }
 
-  async getExportStatus(): Promise<string[]> {
-    const auths = await this.repository.find({ provider: 'a016ee4c2a76b6bb' });
+  /**
+   * 获取原始数据导出下载链接
+   * @param ai    项目ID
+   * @param type  导出类型, 如 visit, page
+   * @param date  时间, 如 20181010
+   */
+  async getExportStatus(ai: string, type: string, date: string): Promise<string[]> {
+    const auths = await this.repository.find({ provider: ai });
     if (auths.length === 0) {
       return Promise.resolve([]);
     }
@@ -46,7 +55,7 @@ export class QSService {
     const auth = auths.sort((a, b) => b.id - a.id)[0];
     // 获取下载链接
     return await axios.get(
-      'https://www.growingio.com/v2/insights/day/page/a016ee4c2a76b6bb/2018112500.json',
+      `https://www.growingio.com/v2/insights/day/${type}/${ai}/${date}.json`,
       { headers: { 'X-Client-Id': auth.key, 'Authorization': auth.token } },
     ).then(res => res.data || {})
      .then(data => data.downloadLinks || []);
