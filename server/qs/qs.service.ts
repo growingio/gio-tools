@@ -55,7 +55,7 @@ export class QSService {
     const auth = auths.sort((a, b) => b.id - a.id)[0];
     // 获取下载链接
     return await axios.get(
-      `http://www.growingio.com/v2/insights/day/${type}/${ai}/${date}.json`,
+      `https://www.growingio.com:443/v2/insights/day/${type}/${ai}/${date}.json`,
       { headers: { 'X-Client-Id': auth.key, 'Authorization': auth.token } },
     ).then(res => res.data || {})
      .then(data => data.downloadLinks || []);
