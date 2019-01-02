@@ -5,7 +5,7 @@ export default {
   namespace: 'runJobs',
 
   state: {
-    jobs: [],
+    jobResult: {},
   },
 
   effects: {
@@ -14,7 +14,7 @@ export default {
       yield put({
         type: 'queryList',
         payload: {
-          jobs: response.data,
+          jobResult: response.data,
         },
       });
     },

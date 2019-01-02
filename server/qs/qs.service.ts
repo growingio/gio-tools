@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
 import { ConfigService, InjectConfig } from 'nestjs-config';
 import { Job } from './dto/job.dto';
+import { JobResult } from './dto/jobResult.dto';
 import { Auth } from './entity/auth.entity';
 
 @Injectable()
@@ -22,21 +23,28 @@ export class QSService {
   /**
    * 获取 query service 正在运行查询的信息
    */
-  async getStatRunningJob(): Promise<Job[]> {
+  async getStatRunningJob(): Promise<JobResult> {
     return await Promise.all(
       this.server.map(s =>
         axios.get(`http://${s.address}/stat/runningJob`)
           .then(res => res.data.value || [])
-          .then(it => ({server: s.name, values: it })),
-      ))
+          .then(it => ({server: s.name, status: true, values: it }))
+          .catch(error => ({server: s.name, status: false, values: []})),
+        ),
+      )
       .then(data => {
         const jobs: Array<Job> = [];
+        const errorServers: string[] = [];
         data.forEach(it => {
-          it.values.forEach(value => {
-            jobs.push(new Job(it.server, value.ai, value.jobId, value.requestId, value.runningTime));
-          });
+          if (!!it.status) {
+            it.values.forEach(value => {
+              jobs.push(new Job(it.server, value.ai, value.jobId, value.requestId, value.runningTime));
+            });
+          } else {
+            errorServers.push(it.server);
+          }
         });
-        return jobs;
+        return new JobResult(jobs, errorServers);
       });
   }
 

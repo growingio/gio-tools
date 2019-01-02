@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 import { routerRedux } from 'dva/router';
-import { Layout, Table } from 'antd';
+import { Layout, Table, Alert } from 'antd';
 import Styles from './index.scss';
 
 const { Header, Content } = Layout;
@@ -37,7 +37,7 @@ const columns = [{
 }];
 
 @connect(({ runJobs }) => ({
-  jobs: runJobs.jobs,
+  jobResult: runJobs.jobResult,
 }))
 class RunJobs extends Component {
   constructor(props) {
@@ -64,7 +64,8 @@ class RunJobs extends Component {
   }
 
   render() {
-    const { dispatch, jobs = [] } = this.props;
+    const { dispatch, jobResult = {} } = this.props;
+    const { jobs = [], errorServers = [] } = jobResult;
     const jobsPartition = { };
     jobs.forEach((job) => {
       const values = jobsPartition[job.server] || [];
@@ -78,6 +79,10 @@ class RunJobs extends Component {
           <a onClick={() => { dispatch(routerRedux.push({ pathname: '/' })); }}>GrowingIO Tools &gt; QueryService Monitor</a>
         </Header>
         <Content className="content">
+          {
+            errorServers.length === 0 ?
+              '' : (<Alert className="error" message={`机器超时或挂了: ${errorServers.join()}`} type="error" showIcon />)
+          }
           {
             jobs.length === 0 ?
             (
