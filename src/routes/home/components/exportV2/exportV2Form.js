@@ -41,6 +41,7 @@ class ExportV2Form extends Component {
               <Option value="action">action</Option>
               <Option value="action_tag">action_tag</Option>
               <Option value="custom_attr">custom_attr</Option>
+              <Option value="vstr">vstr</Option>
               <Option value="ads_track_click">ads_track_click</Option>
               <Option value="ads_track_activation">ads_track_activation</Option>
             </Select>
