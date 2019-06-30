@@ -27,7 +27,7 @@ class Home extends Component {
               <Card
                 title="QS Monitor"
                 style={{ width: 300 }}
-                extra={<Icon type="fund" />}
+                extra={<Icon type="fund" style={{ fontSize: '24px' }} />}
                 hoverable="true"
                 onClick={() => { dispatch(routerRedux.push({ pathname: '/tools/run_jobs' })); }}
               >
@@ -36,9 +36,20 @@ class Home extends Component {
             </Col>
             <Col span={6}>
               <Card
+                title="QS Tester"
+                style={{ width: 300 }}
+                extra={<Icon type="diff" style={{ fontSize: '24px' }} />}
+                hoverable="true"
+                onClick={() => { dispatch(routerRedux.push({ pathname: '/tools/qs_tester' })); }}
+              >
+                Query Service 指标接口测试
+              </Card>
+            </Col>
+            <Col span={6}>
+              <Card
                 title="JOB_TODO SQL GEN"
                 style={{ width: 300 }}
-                extra={<Icon type="file-text" />}
+                extra={<Icon type="file-text" style={{ fontSize: '24px' }} />}
                 hoverable="true"
                 onClick={() => { dispatch(routerRedux.push({ pathname: '/tools/job_todo' })); }}
               >
@@ -49,7 +60,7 @@ class Home extends Component {
               <Card
                 title="API 认证"
                 style={{ width: 300 }}
-                extra={<Icon type="link" />}
+                extra={<Icon type="link" style={{ fontSize: '24px' }} />}
                 hoverable="true"
                 onClick={() => { dispatch(routerRedux.push({ pathname: '/tools/api_auth' })); }}
               >
@@ -62,7 +73,7 @@ class Home extends Component {
               <Card
                 title="原始数据导出（v2）"
                 style={{ width: 300 }}
-                extra={<Icon type="cloud-download" />}
+                extra={<Icon type="cloud-download" style={{ fontSize: '24px' }} />}
                 hoverable="true"
                 onClick={() => { dispatch(routerRedux.push({ pathname: '/tools/export_v2' })); }}
               >

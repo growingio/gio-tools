@@ -7,6 +7,7 @@ import JobTodo from './routes/home/components/jobTodo';
 import ApiAuth from './routes/home/components/apiAuth';
 import RunJobs from './routes/home/components/runJobs';
 import ExportV2 from './routes/home/components/exportV2';
+import QsTester from './routes/home/components/qsTester';
 
 const { ConnectedRouter } = routerRedux;
 
@@ -19,6 +20,7 @@ function RouterConfig({ history }) {
         <Route path="/tools/job_todo" exact component={JobTodo} />
         <Route path="/tools/api_auth" exact component={ApiAuth} />
         <Route path="/tools/export_v2" exact component={ExportV2} />
+        <Route path="/tools/qs_tester" exact component={QsTester} />
       </Switch>
     </ConnectedRouter>
   );
