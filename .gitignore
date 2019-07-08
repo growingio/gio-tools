@@ -13,3 +13,4 @@ npm-debug.log*
 
 ormconfig.json
 ormconfig.prod.json
+.nedb/*.db
