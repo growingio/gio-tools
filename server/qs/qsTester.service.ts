@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService, InjectConfig } from 'nestjs-config';
 import * as path from 'path';
 import * as Datastore from 'nedb-promise';
+import axios from '../axios.gio';
+import * as JSON5 from 'json5';
 
 @Injectable()
 export class QSTester {
@@ -21,6 +23,11 @@ export class QSTester {
       filename: path.resolve(dbConfig.path, 'qs_test_case_details.db'),
       autoload: true,
     });
+  }
+
+  async testSample(qsAddress: string, qsBody: string): Promise<any> {
+    return axios.post(`http://${qsAddress}`, JSON5.parse(qsBody))
+      .then(res => res.data);
   }
 
   async getCases(): Promise<any> {

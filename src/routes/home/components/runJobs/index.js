@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 import { routerRedux } from 'dva/router';
-import { Layout, Table, Alert } from 'antd';
+import { Layout, Table, Alert, Skeleton } from 'antd';
 import Styles from './index.scss';
 
 const { Header, Content } = Layout;
@@ -36,8 +36,9 @@ const columns = [{
   key: 'jobId',
 }];
 
-@connect(({ runJobs }) => ({
+@connect(({ runJobs, loading }) => ({
   jobResult: runJobs.jobResult,
+  loading: loading.global,
 }))
 class RunJobs extends Component {
   constructor(props) {
@@ -79,30 +80,32 @@ class RunJobs extends Component {
           <a onClick={() => { dispatch(routerRedux.push({ pathname: '/' })); }}>GrowingIO Tools &gt; QueryService Monitor</a>
         </Header>
         <Content className="content">
-          {
-            errorServers.length === 0 ?
-              '' : (<Alert className="error" message={`机器超时或挂了: ${errorServers.join()}`} type="error" showIcon />)
-          }
-          {
-            jobs.length === 0 ?
-            (
-              <div className="empty">
-                <img src={emptyImg} alt="" with="800" height="300" />
-                <span>空空如也, <a href="javascript:;" onClick={() => this.fetchJobList()}>点我刷新</a></span>
-              </div>
-            ) :
-            Object.keys(jobsPartition).map((key, i) => (
-              <div key={`${key}_${i}`}>
-                <span>{ key }</span>
-                <Table
-                  rowKey={record => record.requestId}
-                  columns={columns}
-                  dataSource={jobsPartition[key]}
-                  size="small"
-                />
-              </div>
-            ))
-          }
+          <Skeleton loading={this.props.loading} active avatar paragraph={{ rows: 10 }}>
+            {
+              errorServers.length === 0 ?
+                '' : (<Alert className="error" message={`机器超时或挂了: ${errorServers.join()}`} type="error" showIcon />)
+            }
+            {
+              !this.props.loading && jobs.length === 0 ?
+              (
+                <div className="empty">
+                  <img src={emptyImg} alt="" with="800" height="300" />
+                  <span>空空如也, <a href="javascript:;" onClick={() => this.fetchJobList()}>点我刷新</a></span>
+                </div>
+              ) :
+              Object.keys(jobsPartition).map((key, i) => (
+                <div key={`${key}_${i}`}>
+                  <span>{ key }</span>
+                  <Table
+                    rowKey={record => record.requestId}
+                    columns={columns}
+                    dataSource={jobsPartition[key]}
+                    size="small"
+                  />
+                </div>
+              ))
+            }
+          </Skeleton>
         </Content>
       </div>
     );

@@ -1,11 +1,32 @@
-.qsTester {
-  :global {
-    .content {
-      padding: 40px;
+.qsTester { :global {
+  .content {
+    padding: 40px;
 
-      .form {
-        margin-bottom: 20px;
-      }
+    .form {
+      margin-bottom: 20px;
     }
   }
-}
+}}
+
+.qsTesterModal { :global {
+
+  .req {
+    margin-top: 20px;
+    padding: 4px;
+    border: 1px solid #CCC;
+    width: 250px;
+    height: 320px;
+  }
+
+  .res {
+    margin-top: 20px;
+    border: 1px solid #CCC;
+    width: 780px;
+    height: 320px;
+    overflow: auto;
+
+    .d2h-file-header {
+      display: none !important;
+    }
+  }
+}}
