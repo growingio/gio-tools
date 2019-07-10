@@ -1,5 +1,11 @@
 .qsTester {
   :global {
+    .content {
+      padding: 40px;
 
+      .form {
+        margin-bottom: 20px;
+      }
+    }
   }
 }

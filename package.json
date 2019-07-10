@@ -27,7 +27,8 @@
     "typescript": "^3.0.1",
     "axios": "^0.18.0",
     "axios-https-proxy-fix": "^0.17.1",
-    "nestjs-config": "^1.2.7"
+    "nestjs-config": "^1.2.7",
+    "diff2html": "^2.10.1"
   },
   "devDependencies": {
     "babel-plugin-dva-hmr": "^0.3.2",
@@ -41,10 +42,10 @@
     "eslint-plugin-react": "^7.6.1",
     "husky": "^0.12.0",
     "less-vars-to-js": "^1.2.1",
-    "node-sass": "^3.12.2",
+    "node-sass": "^4.12.0",
     "postcss-pxtorem": "^4.0.1",
     "redbox-react": "^1.4.3",
-    "roadhog": "^2.0.0",
+    "roadhog": "^2.5.0-beta.4",
     "sass-loader": "^4.0.2",
     "@nestjs/testing": "^5.1.0",
     "@types/express": "^4.16.0",
