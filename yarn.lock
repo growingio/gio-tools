@@ -3395,9 +3395,9 @@ diffie-hellman@^5.0.0:
     miller-rabin "^4.0.0"
     randombytes "^2.0.0"
 
-difflib@^0.2.4:
-  version "0.2.4"
-  resolved "https://registry.npm.taobao.org/difflib/download/difflib-0.2.4.tgz#b5e30361a6db023176d562892db85940a718f47e"
+diffit@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npm.taobao.org/diffit/download/diffit-1.0.1.tgz#595f490116c36840e88275b0f0e52925bace71fd"
   dependencies:
     heap ">= 0.2.0"
 

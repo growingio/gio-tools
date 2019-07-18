@@ -13,7 +13,7 @@ function handle() {
         host: p.hostname,
         port: p.port,
       },
-      timeout: 3000,
+      timeout: 2000,
     });
   }
   return axios;

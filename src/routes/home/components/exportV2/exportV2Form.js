@@ -7,7 +7,7 @@ const Option = Select.Option;
 
 const formItemLayout = {
   labelCol: { span: 6 },
-  wrapperCol: { span: 14 },
+  wrapperCol: { span: 18 },
 };
 
 class ExportV2Form extends Component {
@@ -35,15 +35,17 @@ class ExportV2Form extends Component {
           {getFieldDecorator('type', {
             initialValue: 'visit',
           })(
-            <Select>
+            <Select style={{ width: 120 }}>
               <Option value="visit">visit</Option>
               <Option value="page">page</Option>
               <Option value="action">action</Option>
               <Option value="action_tag">action_tag</Option>
-              <Option value="custom_attr">custom_attr</Option>
-              <Option value="vstr">vstr</Option>
+              <Option value="custom_event">custom_event</Option>
+              <Option value="pvar">pvar</Option>
+              <Option value="evar">evar</Option>
               <Option value="ads_track_click">ads_track_click</Option>
               <Option value="ads_track_activation">ads_track_activation</Option>
+              <Option value="vstr">vstr</Option>
             </Select>
           )}
         </FormItem>
@@ -54,7 +56,7 @@ class ExportV2Form extends Component {
         >
           {getFieldDecorator('date', {
             rules: [],
-            initialValue: moment(),
+            initialValue: moment().add(-1, 'days'),
           })(
             <DatePicker placeholder="请输入时间" />
           )}

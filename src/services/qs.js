@@ -3,7 +3,8 @@ import request from '../utils/request';
 export async function testSample(params) {
   return request('/api/qs/test/sample', {
     method: 'POST',
-    body: params,
+    type: 'json',
+    body: JSON.stringify(params),
   });
 }
 

@@ -1,5 +1,6 @@
 const diff2html = require('diff2html').Diff2Html;
-const difflib = require('difflib');
+// const difflib = require('difflib');
+const difflib = require('diffit');
 const format = require('util').format;
 
 /* https://github.com/rtfpessoa/diff2html#configuration */
@@ -23,6 +24,9 @@ function renderDiff(beforeString, afterString, options) {
   const diffArray = difflib.unifiedDiff(beforeArray, afterArray, {
     fromFile: _options.fileName,
     toFile: _options.fileName,
+    // n is not work, see https://github.com/qiao/difflib.js/issues/8
+    // use fork version: diffit
+    n: 1000,
   });
 
   const diffString = format('diff --git %s %s\n%s',

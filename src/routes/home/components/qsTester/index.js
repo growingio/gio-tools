@@ -32,6 +32,7 @@ class QsTester extends Component {
         qsBody: '{}',
       },
     };
+    this.qsBodyEditor = null;
     this.submitTestSample = this.submitTestSample.bind(this);
     this.sampleModalInputChange = this.sampleModalInputChange.bind(this);
     this.sampleModalBodyChange = this.sampleModalBodyChange.bind(this);
@@ -39,7 +40,7 @@ class QsTester extends Component {
 
   prettyHtml = () => {
     const { testSample } = this.props;
-    return Diff2Html.getPrettyHtml(testSample || '', {
+    return Diff2Html.getPrettyHtml(testSample.diff || '', {
       inputFormat: 'diff',
       showFiles: false,
       outputFormat: 'side-by-side',
@@ -166,12 +167,12 @@ class QsTester extends Component {
           >
             <Form>
               <Row type="flex" justify="space-around" align="middle">
-                <Col span={4}>
+                <Col span={5}>
                   <FormItem label="" style={{ height: '20px' }} >
-                    <Input id="qsHost1" placeholder="输入qs地址, 如: qs:6060" onChange={this.sampleModalInputChange} />
+                    <Input id="qsHost1" placeholder="输入qs1地址, 如: qs1:6060" onChange={this.sampleModalInputChange} />
                   </FormItem>
                   <FormItem label="" style={{ height: '20px' }} >
-                    <Input id="qsHost2" placeholder="输入qs地址, 如: qs:6060" onChange={this.sampleModalInputChange} />
+                    <Input id="qsHost2" placeholder="输入qs2地址, 如: qs2:6060" onChange={this.sampleModalInputChange} />
                   </FormItem>
                 </Col>
                 <Col span={18}>
@@ -185,9 +186,10 @@ class QsTester extends Component {
               <Col className="req" span={6}>
                 <CodeMirror
                   id="qsBody"
+                  editorDidMount={(editor) => { this.qsBodyEditor = editor; }}
                   value={this.state.sampleModal.qsBody}
                   onBeforeChange={this.sampleModalBodyChange}
-                  options={{ mode: 'javascript' }}
+                  options={{ mode: 'javascript', tabSize: 2 }}
                 />
               </Col>
               <Col className="go" span={2}>

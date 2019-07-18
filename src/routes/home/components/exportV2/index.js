@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 import { routerRedux } from 'dva/router';
-import { Layout, List } from 'antd';
+import { Layout, List, Spin } from 'antd';
 import moment from 'moment';
 import WrappedExportV2Form from './exportV2Form';
 import Styles from './index.scss';
 
 const { Header, Content } = Layout;
 
-@connect(({ exportLinks }) => ({
+@connect(({ exportLinks, loading }) => ({
   links: exportLinks.links,
+  loading: loading.global,
 }))
 class ExportV2 extends Component {
   constructor(props) {
@@ -73,18 +74,20 @@ class ExportV2 extends Component {
             ref={ref => this.formObj = ref}
             handleClick={this.handleClick}
           />
-          <List
-            className="links"
-            size="small"
-            header={<div>点击链接下载</div>}
-            bordered
-            dataSource={links}
-            renderItem={item => (
-              <List.Item>
-                <a rel="noopener noreferrer" href={item.link} target="_blank">{item.display}</a>
-              </List.Item>
-            )}
-          />
+          <Spin spinning={this.props.loading}>
+            <List
+              className="links"
+              size="small"
+              header={<div>点击链接下载</div>}
+              bordered
+              dataSource={links}
+              renderItem={item => (
+                <List.Item>
+                  <a rel="noopener noreferrer" href={item.link} target="_blank">{item.display}</a>
+                </List.Item>
+              )}
+            />
+          </Spin>
         </Content>
       </div>
     );

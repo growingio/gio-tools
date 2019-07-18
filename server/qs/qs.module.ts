@@ -3,13 +3,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { QSController } from './qs.controller';
 import { QSService } from './qs.service';
 import { Auth } from './entity/auth.entity';
-import { QSTester } from './qsTester.service';
+import { QSTesterService } from './qsTester.service';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Auth]),
   ],
   controllers: [QSController],
-  providers: [QSService, QSTester],
+  providers: [QSService, QSTesterService],
 })
 export class QSModule {}

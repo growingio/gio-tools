@@ -1,15 +1,15 @@
-import { Get, Post, Controller, Param, Header, Query } from '@nestjs/common';
+import { Get, Post, Controller, Param, Header, Query, Body } from '@nestjs/common';
 import { QSService } from './qs.service';
-import { QSTester } from './qsTester.service';
+import { QSTesterService } from './qsTester.service';
 import { JobResult } from './dto/jobResult.dto';
 import * as path from 'path';
-import { renderDiff } from '../common/utils/diffUtils';
+import { Diff } from './dto/diff.dto';
 
 @Controller('/api/qs')
 export class QSController {
   constructor(
     private readonly queryService: QSService,
-    private readonly qsTester: QSTester,
+    private readonly qsTesterService: QSTesterService,
   ) {}
 
   @Get('/stat/runJobs')
@@ -28,33 +28,16 @@ export class QSController {
 
   @Post('/test/sample')
   async testSample(
-    @Query('qsHost1') qsHost1: string,
-    @Query('qsHost2') qsHost2: string,
-    @Query('qsPath') qsPath: string,
-    @Query('qsBody') qsBody: string,
-  ): Promise<any> {
-
-    let res1 = Promise.resolve('');
-    if (!!qsHost1) {
-      res1 = this.qsTester.testSample(`${qsHost1}${qsPath}`, qsBody);
-    }
-    let res2 = Promise.resolve('');
-    if (!!qsHost2) {
-      res2 = this.qsTester.testSample(`${qsHost2}${qsPath}`, qsBody);
-    }
-
-    await res1;
-    await res2;
-
-    return Promise.resolve({
-      res1,
-      res2,
-      diff: renderDiff(res1, res2, { fileName: '-' }),
-    });
+    @Body('qsHost1') qsHost1: string,
+    @Body('qsHost2') qsHost2: string,
+    @Body('qsPath') qsPath: string,
+    @Body('qsBody') qsBody: string,
+  ): Promise<Diff> {
+    return this.qsTesterService.testSample(qsHost1, qsHost2, qsPath, qsBody);
   }
 
   @Get('/test/cases')
   getDB(): Promise<any> {
-    return this.qsTester.getCases();
+    return this.qsTesterService.getCases();
   }
 }
