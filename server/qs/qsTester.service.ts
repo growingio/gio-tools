@@ -1,31 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService, InjectConfig } from 'nestjs-config';
-import * as path from 'path';
-import * as Datastore from 'nedb-promise';
 import axios from '../axios.gio';
 import { renderDiff } from '../common/utils/diffUtils';
 import * as JSON5 from 'json5';
 import * as _ from 'underscore';
 import { Diff } from './dto/diff.dto';
+import { CaseService } from './case/case.interface';
+import { NedbCaseService } from './case/nedbCase.service';
 
 @Injectable()
 export class QSTesterService {
-  private caseDB: any;
-  private caseDetailDB: any;
+  private caseService: CaseService;
 
   constructor(
     @InjectConfig()
     private readonly config: ConfigService,
   ) {
-    const dbConfig = config.get('config.qs.db');
-    this.caseDB = new Datastore({
-      filename: path.resolve(dbConfig.path, 'qs_test_cases.db'),
-      autoload: true,
-    });
-    this.caseDetailDB = new Datastore({
-      filename: path.resolve(dbConfig.path, 'qs_test_case_details.db'),
-      autoload: true,
-    });
+    this.caseService = new NedbCaseService(config.get('config.qs.db'));
   }
 
   private async testSample0(qsAddress: string, qsBody: string): Promise<any> {
@@ -81,8 +72,12 @@ export class QSTesterService {
     ));
   }
 
+  async createCase(): Promise<void> {
+
+  }
+
   async getCases(): Promise<any> {
-    const cases = await this.caseDB.find({});
+    const cases = await this.caseService.listCases();
     return Promise.resolve(cases);
   }
 }

@@ -10,6 +10,7 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/lib/codemirror.css';
 import { Diff2Html } from 'diff2html';
 import 'diff2html/dist/diff2html.min.css';
+import AddCaseForm from './addCase';
 
 import Styles from './index.scss';
 
@@ -25,6 +26,7 @@ class QsTester extends Component {
     super(props);
     this.state = {
       showSampleDiffModal: false,
+      showAddCaseModal: false,
       sampleModal: {
         qsHost1: '',
         qsHost2: '',
@@ -149,7 +151,9 @@ class QsTester extends Component {
                 <Button type="default" onClick={() => this.setState({ showSampleDiffModal: true })}>简单测试</Button>
               </FormItem>
               <FormItem label="">
-                <Button type="primary"><Icon type="plus" />新建用例</Button>
+                <Button type="primary" onClick={() => this.setState({ showAddCaseModal: true })}><Icon type="plus" />
+                  新建用例
+                </Button>
               </FormItem>
             </Form>
           </div>
@@ -201,6 +205,7 @@ class QsTester extends Component {
             </Row>
           </Modal>
         </Content>
+        <AddCaseForm visible={this.state.showAddCaseModal} onClose={() => this.setState({ showAddCaseModal: false })} />
       </div>
     );
   }

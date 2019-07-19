@@ -4,6 +4,7 @@ import { QSTesterService } from './qsTester.service';
 import { JobResult } from './dto/jobResult.dto';
 import * as path from 'path';
 import { Diff } from './dto/diff.dto';
+import { Case } from './case/case.model';
 
 @Controller('/api/qs')
 export class QSController {
@@ -34,6 +35,11 @@ export class QSController {
     @Body('qsBody') qsBody: string,
   ): Promise<Diff> {
     return this.qsTesterService.testSample(qsHost1, qsHost2, qsPath, qsBody);
+  }
+
+  @Post('/test/case')
+  async createCase(@Body() o: Case): Promise<void> {
+    console.log(o);
   }
 
   @Get('/test/cases')

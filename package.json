@@ -3,8 +3,8 @@
   "scripts": {
     "start": "roadhog server",
     "build": "roadhog build",
-    "server": "ts-node -r tsconfig-paths/register server/main.ts",
-    "server:dev": "nodemon",
+    "server": "nodemon",
+    "server:debug": "nodemon --config nodemon-debug.json",
     "server:prod": "tsc && node dist_server/main.js"
   },
   "dependencies": {
