@@ -3,6 +3,7 @@ import { connect } from 'dva';
 import { routerRedux } from 'dva/router';
 import produce from 'immer';
 import * as _ from 'underscore';
+import moment from 'moment';
 import JSON5 from 'json5';
 import { Layout, Form, Table, Input, Button, Icon, Modal, Row, Col, message } from 'antd';
 import { Controlled as CodeMirror } from 'react-codemirror2';
@@ -19,6 +20,7 @@ const { Header, Content } = Layout;
 
 @connect(({ loading, qs }) => ({
   testSample: qs.testSample,
+  cases: qs.cases,
   loading: loading.global,
 }))
 class QsTester extends Component {
@@ -38,6 +40,17 @@ class QsTester extends Component {
     this.submitTestSample = this.submitTestSample.bind(this);
     this.sampleModalInputChange = this.sampleModalInputChange.bind(this);
     this.sampleModalBodyChange = this.sampleModalBodyChange.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetchCases();
+  }
+
+  fetchCases() {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'qs/listAllCases',
+    });
   }
 
   prettyHtml = () => {
@@ -99,23 +112,7 @@ class QsTester extends Component {
   }
 
   render() {
-    const { dispatch } = this.props;
-
-    const dataSource = [
-      {
-        key: '1',
-        name: '胡彦斌',
-        desc: 'xxx',
-        owner: '西湖区湖底公园1号',
-      },
-      {
-        key: '2',
-        name: '胡彦祖',
-        desc: 'xxx2',
-        owner: '西湖区湖底公园1号',
-      },
-    ];
-
+    const { dispatch, loading, cases = [] } = this.props;
     const columns = [
       {
         title: '名称',
@@ -123,19 +120,20 @@ class QsTester extends Component {
         key: 'name',
       },
       {
-        title: '描述',
-        dataIndex: 'desc',
-        key: 'desc',
-      },
-      {
         title: '所属人',
         dataIndex: 'owner',
         key: 'owner',
       },
       {
+        title: '描述',
+        dataIndex: 'description',
+        key: 'description',
+      },
+      {
         title: '创建时间',
-        dataIndex: 'createdAt',
-        key: 'createdAt',
+        dataIndex: 'createAt',
+        key: 'createAt',
+        render: t => moment(t).format('YYYY-MM-DD HH:mm:ss'),
       },
     ];
 
@@ -157,7 +155,13 @@ class QsTester extends Component {
               </FormItem>
             </Form>
           </div>
-          <Table {...this.state} columns={columns} dataSource={dataSource} bordered />
+          <Table {...this.state}
+            columns={columns}
+            dataSource={cases}
+            loading={loading}
+            rowKey="_id"
+            bordered
+          />
           <Modal
             className={Styles.qsTesterModal}
             visible={this.state.showSampleDiffModal}

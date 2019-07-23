@@ -8,6 +8,6 @@ export async function testSample(params) {
   });
 }
 
-export async function testSample2() {
-  return request('/api/qs/test/sample');
+export async function listCases(query = {}) {
+  return request('/api/qs/test/cases/all', { query });
 }

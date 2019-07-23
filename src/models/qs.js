@@ -1,5 +1,5 @@
 import { message } from 'antd';
-import { testSample } from '../services/qs';
+import { testSample, listCases } from '../services/qs';
 
 export default {
 
@@ -7,6 +7,7 @@ export default {
 
   state: {
     testSample: { },
+    cases: [],
   },
 
   effects: {
@@ -23,10 +24,23 @@ export default {
         },
       });
     },
+
+    * listAllCases({ payload }, { call, put }) {
+      const response = yield call(listCases, payload);
+      yield put({
+        type: 'reduceListAllCases',
+        payload: {
+          cases: response.data,
+        },
+      });
+    },
   },
 
   reducers: {
     reduceTestSample(state, action) {
+      return { ...state, ...action.payload };
+    },
+    reduceListAllCases(state, action) {
       return { ...state, ...action.payload };
     },
   },

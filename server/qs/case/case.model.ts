@@ -1,3 +1,4 @@
+import { Status } from 'common/constants/status.enum';
 
 export class Case {
 
@@ -7,6 +8,9 @@ export class Case {
   qsHost2: string;
   qsBody: string;
   type: string;
+  status: Status;
   description: string;
+  createAt: Date;
+  updateAt: Date;
 
 }

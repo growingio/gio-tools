@@ -32,9 +32,22 @@ export default function request(url, options) {
       });
     }
   }
-  return fetch(url, options)
+
+  const query = encodeQuery(options.query);
+  return fetch(url + query, options)
     .then(checkStatus)
     .then(parseJSON)
     .then(data => ({ data }))
     .catch(err => ({ err }));
+}
+
+function encodeQuery(params) {
+  let query = '';
+  if (params) {
+    query = Object.keys(query)
+      .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(query[k])}`)
+      .join('&');
+    query = `?${query}`;
+  }
+  return query;
 }

@@ -21,11 +21,11 @@ export class NedbCaseService implements CaseService {
     });
   }
 
-  createCase(o: Case): Promise<string> {
-    return Promise.resolve('');
+  async createCase(o: Case): Promise<Case> {
+    return this.caseDB.insert(o);
   }
 
-  listCases(): Promise<Case[]> {
-    return Promise.resolve([]);
+  listCases(param: any): Promise<Case[]> {
+    return this.caseDB.find(param);
   }
 }

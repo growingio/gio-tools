@@ -7,6 +7,8 @@ import * as _ from 'underscore';
 import { Diff } from './dto/diff.dto';
 import { CaseService } from './case/case.interface';
 import { NedbCaseService } from './case/nedbCase.service';
+import { Case } from './case/case.model';
+import { Status } from 'common/constants/status.enum';
 
 @Injectable()
 export class QSTesterService {
@@ -72,12 +74,13 @@ export class QSTesterService {
     ));
   }
 
-  async createCase(): Promise<void> {
-
+  async createCase(o: Case): Promise<Case> {
+    return this.caseService.createCase(o);
   }
 
-  async getCases(): Promise<any> {
-    const cases = await this.caseService.listCases();
-    return Promise.resolve(cases);
+  async listAllCases(): Promise<Case[]> {
+    return this.caseService
+      .listCases({ status: Status.NORMAL })
+      .then(cases => _.sortBy(cases, 'createAt').reverse());
   }
 }
