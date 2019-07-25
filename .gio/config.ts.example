@@ -1,0 +1,74 @@
+import * as path from 'path';
+
+/**
+ * gio tools 全局配置文件
+ *
+ * 开发时拷贝一份: config.ts
+ */
+export default {
+
+  /**
+   * TypeORM 配置
+   */
+  database: {
+    type: 'postgres',
+    host: 'localhost',
+    port: 5432,
+    username: 'postgres',
+    password: 'postgres',
+    database: 'growing',
+    logging: false,
+    synchronize: false,
+    entities: ['server/**/*.entity.{ts,js}'],
+  },
+
+  /**
+   * query service 配置
+   */
+  qs: {
+    server: [
+      { name: 'localhost', address: 'localhost:6060'},
+    ],
+  },
+
+  /**
+   * 本地数据库路径
+   */
+  localDB: {
+    path: path.resolve(__dirname, '../.nedb'),
+  },
+
+  session: {
+    key: 'sessionId',
+    expire: 2592000, // 默认30天
+  },
+
+  /**
+   * 请求白名单
+   */
+  request: {
+    whiteList: [
+      '/api/user/login',
+      '/api/user/logout',
+    ],
+  },
+
+  /**
+   * 登录验证系统, 目前对接ldap
+   */
+  login: {
+    type: 'ldap',
+    ldap: {
+      enable: true,
+      url: 'ldap://10.0.5.11:389',
+      systemUsername: 'xxx',
+      systemPassword: 'xxx',
+      search: {
+        userBase: 'ou=growingio,dc=growingio,dc=com',
+        groupBase: 'ou=growingio,dc=growingio,dc=com',
+        filter: '(&(sAMAccountName={0})(memberOf=CN=data-zeppelin,DC=growingio,DC=com))',
+        attributes: ['sAMAccountName'],
+      },
+    },
+  },
+};

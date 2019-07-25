@@ -3,6 +3,7 @@ import { routerRedux, Route, Switch } from 'dva/router';
 import PropTypes from 'prop-types';
 
 import HomePage from './routes/home';
+import NotFound from './routes/others/notFound';
 import JobTodo from './routes/home/components/jobTodo';
 import ApiAuth from './routes/home/components/apiAuth';
 import RunJobs from './routes/home/components/runJobs';
@@ -21,6 +22,7 @@ function RouterConfig({ history }) {
         <Route path="/tools/api_auth" exact component={ApiAuth} />
         <Route path="/tools/export_v2" exact component={ExportV2} />
         <Route path="/tools/qs_tester" exact component={QsTester} />
+        <Route path="*" exact component={NotFound} />
       </Switch>
     </ConnectedRouter>
   );

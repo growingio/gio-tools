@@ -33,7 +33,7 @@ export default function request(url, options) {
     }
   }
 
-  const query = encodeQuery(options.query);
+  const query = options ? encodeQuery(options.query) : '';
   return fetch(url + query, options)
     .then(checkStatus)
     .then(parseJSON)

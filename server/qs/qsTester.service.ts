@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService, InjectConfig } from 'nestjs-config';
-import axios from '../axios.gio';
+import axios from '../common/utils/axios.gio';
 import { renderDiff } from '../common/utils/diffUtils';
 import * as JSON5 from 'json5';
 import * as _ from 'underscore';
@@ -18,7 +18,7 @@ export class QSTesterService {
     @InjectConfig()
     private readonly config: ConfigService,
   ) {
-    this.caseService = new NedbCaseService(config.get('config.qs.db'));
+    this.caseService = new NedbCaseService(config.get('config.localDB'));
   }
 
   private async testSample0(qsAddress: string, qsBody: string): Promise<any> {

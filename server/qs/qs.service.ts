@@ -1,4 +1,4 @@
-import axios from '../axios.gio';
+import axios from '../common/utils/axios.gio';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
