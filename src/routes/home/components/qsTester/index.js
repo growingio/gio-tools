@@ -6,6 +6,7 @@ import * as _ from 'underscore';
 import moment from 'moment';
 import JSON5 from 'json5';
 import { Layout, Form, Table, Input, Button, Icon, Modal, Row, Col, message } from 'antd';
+import Avatar from 'cmt/avatar';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/lib/codemirror.css';
@@ -141,6 +142,7 @@ class QsTester extends Component {
       <div className={Styles.qsTester}>
         <Header className="header">
           <a onClick={() => { dispatch(routerRedux.push({ pathname: '/' })); }}>GrowingIO Tools &gt; QS 测试</a>
+          <Avatar {...this.props} />
         </Header>
         <Content className="content">
           <div className="form">

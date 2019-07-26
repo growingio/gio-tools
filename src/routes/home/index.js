@@ -3,6 +3,7 @@ import { connect } from 'dva';
 import { routerRedux } from 'dva/router';
 import { Layout, Icon, Row, Col } from 'antd';
 import Card from 'cmt/card';
+import Avatar from 'cmt/avatar';
 import Styles from './index.scss';
 
 const { Header, Content } = Layout;
@@ -20,6 +21,7 @@ class Home extends Component {
       <div className={Styles.home}>
         <Header className="header">
           <a onClick={() => { dispatch(routerRedux.push({ pathname: '/' })); }}>GrowingIO Tools</a>
+          <Avatar {...this.props} />
         </Header>
         <Content className="content">
           <Row className="row" gutter={16}>

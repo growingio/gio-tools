@@ -24,7 +24,7 @@ export class LoginMiddleware implements NestMiddleware {
 
   private async hasAuth(req: Request, res: Response): Promise<boolean> {
     const sessionKey = this.config.get('config.session.key') || 'sessionId';
-    const expire = this.config.get('config.session.expire') || 2592000;
+    const expire = this.config.get('config.session.expire') || 2592000000;
 
     const isWhite = this.isWhiteList(req);
     // 1. 如果没有cookie, 写入cookie

@@ -10,7 +10,7 @@ const app = dva();
 app.use(createLoading());
 
 // 3. Model
-// app.model(require('./models/example').default);
+app.model(require('./models/user').default);
 app.model(require('./models/runJobs').default);
 app.model(require('./models/exportLinks').default);
 app.model(require('./models/qs').default);

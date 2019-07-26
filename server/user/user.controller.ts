@@ -24,19 +24,18 @@ export class UserController {
     @Body('username') username: string,
     @Body('password') password: string,
     @Req() req: Request,
-  ): Promise<boolean> {
+  ): Promise<any> {
     // 1. 登录系统, 登录失败抛出异常
     const hasLogin = await this.userService.login(username, password);
     if (!hasLogin) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('LoginError');
     }
     // 2. 如果登录成功, 更新用户状态信息
     if (!req.cookies || !req.cookies[this.sessionKey]) {
       throw new UnauthorizedException();
     }
     const sessionId = req.cookies[this.sessionKey];
-    await this.userService.upsertSession(sessionId, username);
-    return Promise.resolve(hasLogin);
+    return this.userService.upsertSession(sessionId, username);
   }
 
   /**
@@ -64,6 +63,10 @@ export class UserController {
   @Get('/current')
   async current(@Req() req: Request): Promise<any> {
     const sessionId = req.cookies[this.sessionKey];
-    return this.userService.findBySessionId(sessionId);
+    const user = await this.userService.findBySessionId(sessionId);
+    if (!user || !user.username) {
+      throw new UnauthorizedException();
+    }
+    return Promise.resolve(user);
   }
 }

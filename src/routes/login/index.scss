@@ -1,0 +1,24 @@
+.login {
+  :global {
+    height: 100%;
+    background-image: url(https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg);
+    background-repeat: no-repeat;
+    background-position: center 110px;
+    background-size: 100%;
+
+    .content {
+
+      .login-form {
+        max-width: 300px;
+        margin: 0 auto;
+        padding-top: 100px;
+      }
+      .login-form-forgot {
+        float: right;
+      }
+      .login-form-button {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import { routerRedux } from 'dva/router';
 import { Layout, List, Spin } from 'antd';
+import Avatar from 'cmt/avatar';
 import moment from 'moment';
 import WrappedExportV2Form from './exportV2Form';
 import Styles from './index.scss';
@@ -68,6 +69,7 @@ class ExportV2 extends Component {
       <div className={Styles.exportV2}>
         <Header className="header">
           <a onClick={() => { dispatch(routerRedux.push({ pathname: '/' })); }}>GrowingIO Tools &gt; 原始数据导出V2接口</a>
+          <Avatar {...this.props} />
         </Header>
         <Content className="content">
           <WrappedExportV2Form

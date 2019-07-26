@@ -40,7 +40,7 @@ export default {
 
   session: {
     key: 'sessionId',
-    expire: 2592000, // 默认30天
+    expire: 2592000000, // 默认30天
   },
 
   /**
@@ -50,6 +50,7 @@ export default {
     whiteList: [
       '/api/user/login',
       '/api/user/logout',
+      '/api/user/current',
     ],
   },
 

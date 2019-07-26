@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import { routerRedux } from 'dva/router';
 import { Layout, Table, Alert, Skeleton } from 'antd';
+import Avatar from 'cmt/avatar';
 import Styles from './index.scss';
 
 const { Header, Content } = Layout;
@@ -78,6 +79,7 @@ class RunJobs extends Component {
       <div className={Styles.runJobs}>
         <Header className="header">
           <a onClick={() => { dispatch(routerRedux.push({ pathname: '/' })); }}>GrowingIO Tools &gt; QueryService Monitor</a>
+          <Avatar {...this.props} />
         </Header>
         <Content className="content">
           <Skeleton loading={this.props.loading} active avatar paragraph={{ rows: 10 }}>

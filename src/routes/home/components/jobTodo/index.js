@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import { routerRedux } from 'dva/router';
 import { Layout, Row, Col } from 'antd';
+import Avatar from 'cmt/avatar';
 import { UnControlled as CodeMirror } from 'react-codemirror2';
 import 'codemirror/mode/sql/sql';
 import 'codemirror/lib/codemirror.css';
@@ -90,6 +91,7 @@ class JobTodo extends Component {
       <div className={Styles.jobTodo}>
         <Header className="header">
           <a onClick={() => { dispatch(routerRedux.push({ pathname: '/' })); }}>GrowingIO Tools &gt; JOB_TODO SQL GEN</a>
+          <Avatar {...this.props} />
         </Header>
         <Row>
           <Col className="form" span={10}>
