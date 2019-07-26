@@ -19,7 +19,7 @@ export default {
     database: 'growing',
     logging: false,
     synchronize: false,
-    entities: ['server/**/*.entity.{ts,js}'],
+    entities: [path.resolve(__dirname, '../server/**/*.entity.{ts,js}')],
   },
 
   /**
