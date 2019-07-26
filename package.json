@@ -5,7 +5,7 @@
     "build": "roadhog build",
     "server": "nodemon",
     "server:debug": "nodemon --config nodemon-debug.json",
-    "server:prod": "tsc && cross-env NODE_ENV=production node dist_server/server/main.js"
+    "server:prod": "rimraf dist_server/server && tsc && cross-env NODE_ENV=production node dist_server/server/main.js"
   },
   "dependencies": {
     "antd": "^3.6.6",
