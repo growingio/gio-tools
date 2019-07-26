@@ -1,7 +1,7 @@
 import { Controller, Req, Post, Get, Body, UnauthorizedException } from '@nestjs/common';
 import { Request } from 'express';
 import { ConfigService, InjectConfig } from 'nestjs-config';
-import { UserService } from 'user/user.service';
+import { UserService } from './user.service';
 
 @Controller('/api/user')
 export class UserController {

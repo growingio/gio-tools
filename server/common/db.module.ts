@@ -7,7 +7,7 @@ import { ConfigService } from 'nestjs-config';
     TypeOrmModule.forRootAsync({
       useFactory: (config: ConfigService) => config.get('config.database'),
       inject: [ConfigService],
-  }),
+    }),
   ],
 })
 export class DBModule {}

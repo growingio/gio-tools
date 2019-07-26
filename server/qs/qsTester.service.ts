@@ -8,7 +8,7 @@ import { Diff } from './dto/diff.dto';
 import { CaseService } from './case/case.interface';
 import { NedbCaseService } from './case/nedbCase.service';
 import { Case } from './case/case.model';
-import { Status } from 'common/constants/status.enum';
+import { Status } from '../common/constants/status.enum';
 
 @Injectable()
 export class QSTesterService {

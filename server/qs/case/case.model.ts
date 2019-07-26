@@ -1,4 +1,4 @@
-import { Status } from 'common/constants/status.enum';
+import { Status } from '../../common/constants/status.enum';
 
 export class Case {
 

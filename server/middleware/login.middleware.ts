@@ -1,7 +1,7 @@
 import { NestMiddleware, Injectable, UnauthorizedException } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { ConfigService, InjectConfig } from 'nestjs-config';
-import { UserService } from 'user/user.service';
+import { UserService } from '../user/user.service';
 import * as url from 'url';
 import * as _ from 'underscore';
 

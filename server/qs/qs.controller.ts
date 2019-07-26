@@ -5,7 +5,7 @@ import { JobResult } from './dto/jobResult.dto';
 import * as path from 'path';
 import { Diff } from './dto/diff.dto';
 import { Case } from './case/case.model';
-import { Status } from 'common/constants/status.enum';
+import { Status } from '../common/constants/status.enum';
 
 @Controller('/api/qs')
 export class QSController {

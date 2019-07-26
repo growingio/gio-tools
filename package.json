@@ -5,7 +5,7 @@
     "build": "roadhog build",
     "server": "nodemon",
     "server:debug": "nodemon --config nodemon-debug.json",
-    "server:prod": "tsc && node dist_server/main.js"
+    "server:prod": "tsc && cross-env NODE_ENV=production node dist_server/server/main.js"
   },
   "dependencies": {
     "antd": "^3.6.6",
@@ -74,6 +74,7 @@
     "tsconfig-paths": "^3.5.0",
     "tslint": "5.11.0",
     "nedb": "^1.8.0",
-    "nedb-promise": "^2.0.1"
+    "nedb-promise": "^2.0.1",
+    "cross-env": "^5.2.0"
   }
 }
