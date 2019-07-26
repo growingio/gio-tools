@@ -8,17 +8,19 @@ const Avatar = ({ loginUser = { }, dispatch }) => {
       placement="bottom"
       content={<a onClick={() => dispatch({ type: 'user/logout' })}>退出</a>}
     >
-      <AntAvatar style={{
+      <div style={{ float: 'right', fontSize: '16px', color: '#FFF' }}>
+        <AntAvatar style={{
           backgroundColor: '#FFF',
           color: '#F56A00',
           verticalAlign: 'middle',
-          float: 'right',
-          marginTop: '10px',
-        }}
-        size="large"
-      >
-        { username && username[0].toUpperCase() }
-      </AntAvatar>
+          marginRight: '8px',
+          }}
+          size="large"
+        >
+          { username && username[0].toUpperCase() }
+        </AntAvatar>
+        <span>{ username }</span>
+      </div>
     </Popover>
   );
 };
