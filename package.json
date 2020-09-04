@@ -53,7 +53,7 @@
     "eslint-plugin-react": "^7.6.1",
     "husky": "^0.12.0",
     "less-vars-to-js": "^1.2.1",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "postcss-pxtorem": "^4.0.1",
     "redbox-react": "^1.4.3",
     "roadhog": "^2.5.0-beta.4",
