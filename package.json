@@ -30,7 +30,7 @@
     "rxjs": "^6.2.2",
     "typeorm": "^0.2.8",
     "typescript": "^3.0.1",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "axios-https-proxy-fix": "^0.17.1",
     "nestjs-config": "^1.2.7",
     "diff2html": "^2.10.1",
