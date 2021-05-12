@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "antd": "^3.6.6",
-    "codemirror": "^5.39.0",
+    "codemirror": "^5.58.2",
     "dva": "^2.1.0",
     "dva-loading": "^3.0.0",
     "rc-form": "^2.1.7",
